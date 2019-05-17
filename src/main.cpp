@@ -129,26 +129,29 @@ int main() {
                 too_close = true;
               }
             }
-            if (car_lane - lane == 1)
+            if (car_lane != -1)
             {
-              if(check_car_s-car_s < 30)
-                change_right = false;
-            }
-            if (car_lane - lane == -1)
-            {
-              if(check_car_s-car_s < 30)
-                change_left = false;
-            }
+              if (car_lane - lane == 1)
+              {
+                if(car_s - 30 < check_car_s && car_s + 30 > check_car_s)
+                 change_right = false;
+              }
+              if (car_lane - lane == -1)
+              {
+                if(car_s - 30 < check_car_s && car_s + 30 > check_car_s)
+                  change_left = false;
+              }
           }
-
+          }
           if(too_close)
           {
             ref_velocity -=.224;
-            if (change_left && lane > 0)
+            std::cout << "Too Close: lane = " << lane << " change left= " << change_left << " Change right = " << change_right << std::endl;
+            if (change_left && lane >=1)
             {
               lane -= 1;
             }
-            else if (change_right && lane < 2)
+            else if (change_right && lane <= 1)
             {
               lane += 1;
             }
