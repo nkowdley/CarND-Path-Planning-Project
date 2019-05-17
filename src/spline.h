@@ -361,7 +361,6 @@ void spline::set_points(const std::vector<double>& x,
     // for left extrapolation coefficients
     m_b0 = (m_force_linear_extrapolation==false) ? m_b[0] : 0.0;
     m_c0 = m_c[0];
-
     // for the right extrapolation coefficients
     // f_{n-1}(x) = b*(x-x_{n-1})^2 + c*(x-x_{n-1}) + y_{n-1}
     double h=x[n-1]-x[n-2];
